@@ -6,10 +6,30 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
 
+
+    void Update()
+        {
+            // Notice trigger
+            if (Input.GetButtonDown("Jump"))
+            {
+                StartGame();
+            }
+
+            if (Input.GetButtonDown("Cancel"))
+            {
+                QuitGame();
+            }
+        }
+ 
+
+
+
     public void StartGame()
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+
 
     public void QuitGame()
     {
