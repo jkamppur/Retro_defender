@@ -16,6 +16,7 @@ public class GameControllerUfo : MonoBehaviour
     public GameObject ufo;
     public GameObject player_prefab;
     public static GameControllerUfo instance;
+    public UIController ui;
     
     
     private SmoothCameraFollow cs;
@@ -39,6 +40,7 @@ public class GameControllerUfo : MonoBehaviour
         no_on_ufos = no_on_ufos - 1;    
         spawnUfo();
         spawnPlayer();
+        ui.SetLives(no_of_players);
 
     }
 
@@ -48,11 +50,13 @@ public class GameControllerUfo : MonoBehaviour
 
         if (player == null) {
             no_of_players = no_of_players - 1;
-            if (no_of_players <= 0){
+            if (no_of_players < 0){
                 Debug.Log("Game Over");
             } else {
                 spawnPlayer();
             }
+            Debug.Log("GameController call SetLives");
+            ui.SetLives(no_of_players);
         }
 
     }
@@ -98,6 +102,7 @@ public class GameControllerUfo : MonoBehaviour
         if (no_on_ufos > 0) {
             no_on_ufos--;
             spawnUfo();
+
         }
 
         else {
