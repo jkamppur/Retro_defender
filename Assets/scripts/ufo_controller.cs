@@ -18,8 +18,9 @@ public class ufo_controller : MonoBehaviour
     private float speedY;
     private float timer;
 
-    private enum State {landing, leaving, left, right, shooting};
+    private enum State {landing, leaving, left, right};
     private State state;
+    private bool bombing = false;
 
 
 
@@ -29,13 +30,12 @@ public class ufo_controller : MonoBehaviour
     {
         transform  = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
-        speedX = 0;
-        speedY = -0.8f;
-        state =State.landing;
-
-        
-        
-        timer = 5; // Time before first bomb
+        speedX=0;
+        speedY=-0.8f;
+        state=State.landing;
+        rb.velocity = new Vector2(speedX, speedY);
+        bombing = false;
+        timer = 5; // Time between
     }
 
     // Update is called once per frame
@@ -44,6 +44,8 @@ public class ufo_controller : MonoBehaviour
         if (state == State.landing) {
             if (transform.position.y < 15) {
                 speedY=0;
+                timer = bombTimer;
+                bombing = true;
                 if (Random.Range(0, 2) == 0 )  {
                     state = State.left;
                     speedX = -2;
@@ -51,28 +53,42 @@ public class ufo_controller : MonoBehaviour
                     state = State.right;
                     speedX = 2;
                 }
+                rb.velocity = new Vector2(speedX, speedY);
             }
         } else if (state == State.left) {
             if ( transform.position.x < minX ) {
-                    speedX = 2;
+                speedX = 2;
                 state = State.right;
+                rb.velocity = new Vector2(speedX, speedY);
             }
         } else if (state == State.right) {
             if (transform.position.x > maxX) {
-                    speedX = -2;
+                speedX = -2;
+                rb.velocity = new Vector2(speedX, speedY);
                 state = State.left;
             }
+        } else if (state == State.leaving) {
+                if (transform.position.y <= 15) {
+                    speedY=1.5f;
+                    speedX=0;
+                    bombing = false;
+                    rb.velocity = new Vector2(speedX, speedY);
+                } else if (transform.position.y >= 20) {
+                    Destroy(gameObject);
+                }
+
         }
 
-        rb.velocity = new Vector2(speedX, speedY);
 
-        timer -= Time.deltaTime;
+        // rb.velocity = new Vector2(speedX, speedY);
 
-        if (timer <= 0 ){
-            // bomb
-            Instantiate(bomb, transform.position, new Quaternion());
-            timer = bombTimer;
-
+        if (bombing) {
+            timer -= Time.deltaTime;
+            if (timer <= 0 ){
+                // bomb
+                Instantiate(bomb, transform.position, new Quaternion());
+                timer = bombTimer;
+        }
         }
 
 
@@ -90,4 +106,9 @@ public class ufo_controller : MonoBehaviour
         // }
 
     }
+
+    public void SetStateToLeave() {
+        state = State.leaving;
+    }
+
 }

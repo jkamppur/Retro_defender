@@ -8,6 +8,7 @@ public class GameControllerUfo : MonoBehaviour
     public float min_x;
     public float max_x;
     public int no_on_ufos; 
+    public int no_of_simultaneous_ufos;
     public int no_of_players; 
     public int no_of_houses;
     public float ufo_spawn_delay;
@@ -22,6 +23,7 @@ public class GameControllerUfo : MonoBehaviour
     private SmoothCameraFollow cs;
     private GameObject camera_target;
     private GameObject player;
+    private int scores;
     //  private boolean player_alive;
 
 
@@ -35,12 +37,17 @@ public class GameControllerUfo : MonoBehaviour
 
         Debug.Log("GameController start");
 
-        // Spawn ufo
-        // player_alive = false;    
+        // Ufo
         no_on_ufos = no_on_ufos - 1;    
         spawnUfo();
+
+        // Player
         spawnPlayer();
         ui.SetLives(no_of_players);
+
+        // Score
+        scores = 0;
+        ui.SetScores(scores);
 
     }
 
@@ -109,6 +116,19 @@ public class GameControllerUfo : MonoBehaviour
             Debug.Log("Level win");
         }
     }
+
+    // Score     Hit Ammo        10
+    //           Hit Ufo         50
+    // Destroy   Ufo             500
+
+
+    public void addScore(int score){
+        scores += score;
+
+        ui.SetScores(scores);
+
+    }
+
 
 
 }

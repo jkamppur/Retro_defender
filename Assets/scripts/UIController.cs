@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
 {
 
     public Text livesText;
+    public Text ScoresText;
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +22,18 @@ public class UIController : MonoBehaviour
     }
 
     public void SetLives(int lives){
-        Debug.Log("UI Setlives");
-        livesText.text = "Lives: ";
+        string lives_s = "Lives: ";
+        //  livesText.text = "Lives: ";
         for (int i=0; i<=lives; i++){
-            livesText.text += 'I';
-        }
+              lives_s += 'I';
+        // livesText.text += 'I';
+          }
+        livesText.text = lives_s;
     }
+
+    public void SetScores(int scores){
+        Debug.Log("UI Setscores");
+        ScoresText.text = "Score: " + scores;
+    }
+
 }

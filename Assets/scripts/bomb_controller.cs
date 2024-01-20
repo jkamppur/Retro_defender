@@ -5,8 +5,9 @@ using UnityEngine;
 public class bomb_controller : MonoBehaviour
 {
 
-    private Rigidbody2D rb;
     public GameObject explosion;
+
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,14 @@ public class bomb_controller : MonoBehaviour
 
 
         if (other.name != "Ufo") {
+
+            Debug.Log(other.name);
+
+            if (other.CompareTag("Ammo")) {
+                Debug.Log("=================AMMO===================");
+                GameControllerUfo.instance.addScore(10);
+            }                        
+
             Destroy(gameObject);
     
             Health health = other.GetComponent<Health>();

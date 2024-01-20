@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour
     public float shootCost;
     private float cannonReady;
     public GameObject ammo;
-    public Transform transform;
+    // public Transform transform;
 
 
 
@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
         Debug.Log("Player Control start");
         rb = GetComponent<Rigidbody2D>();
         cannonReady = cannonMax;
-        transform = GetComponent<Transform>();
+        // transform = GetComponent<Transform>();
 
     }
 
