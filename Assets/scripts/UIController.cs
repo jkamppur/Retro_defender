@@ -59,6 +59,10 @@ public class UIController : MonoBehaviour
             line2 += ">";
         }
 
+        if (level == 0) {
+            line2 += "<>";
+        }
+
         text += line2;
 
         alertText.text = text;
@@ -71,7 +75,7 @@ public class UIController : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(3f); // wait half a second
+            yield return new WaitForSeconds(5f); // wait half a second
             // do things
             Debug.Log("AlertTextClear");
 
