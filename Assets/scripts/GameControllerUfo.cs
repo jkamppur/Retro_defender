@@ -37,13 +37,14 @@ public class GameControllerUfo : MonoBehaviour
 
         Debug.Log("GameController start");
 
-        // Ufo
-        no_on_ufos = no_on_ufos - 1;    
-        spawnUfo();
 
         // Player
         spawnPlayer();
         ui.SetLives(no_of_players);
+
+        // Ufo
+        no_on_ufos = no_on_ufos - 1;    
+        spawnUfo();
 
         // Score
         scores = 0;
@@ -79,7 +80,26 @@ public class GameControllerUfo : MonoBehaviour
         Vector3 position = new Vector3(x_pos, y_pos, 0);
 
         Instantiate(ufo, position, new Quaternion());
+
+        Transform transform = player.GetComponent<Transform>();        
+
+        alertUfo(transform.position.x, x_pos);
+
+
     }
+
+    private void alertUfo(float playerX, float ufoX) {
+        Debug.Log("alertUfo");
+        Debug.Log(playerX);
+        Debug.Log(ufoX);
+
+        float dist = ufoX - playerX;
+
+        int level = (int) dist/10;
+
+        ui.AlertUfo(level);
+    }
+
 
     private void spawnPlayer() {
         // float x_pos = 28.5f;

@@ -11,8 +11,10 @@ public class ufo_controller : MonoBehaviour
     public float minX;
     public GameObject bomb;
     public float bombTimer;
-    private Transform transform;
+    public GameControllerUfo gameController;
 
+
+    private Transform transform;
     private Rigidbody2D rb;
     private float speedX;
     private float speedY;
@@ -75,6 +77,7 @@ public class ufo_controller : MonoBehaviour
                     rb.velocity = new Vector2(speedX, speedY);
                 } else if (transform.position.y >= 20) {
                     Destroy(gameObject);
+                    GameControllerUfo.instance.ufoDown();
                 }
 
         }

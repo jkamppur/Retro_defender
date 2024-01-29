@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &106623970 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8342855834052379308, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
+  m_PrefabInstance: {fileID: 1154666713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &243166051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,6 +258,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &508681316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508681317}
+  - component: {fileID: 508681319}
+  - component: {fileID: 508681318}
+  m_Layer: 5
+  m_Name: Ufo alert
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &508681317
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508681316}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2062701231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 11.996582, y: 260}
+  m_SizeDelta: {x: 160, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &508681318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508681316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.93725497, g: 0.0627451, b: 0.015686275, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 50
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 0.9
+  m_Text: 'Ufo Alert
+
+    <---'
+--- !u!222 &508681319
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508681316}
+  m_CullTransparentMesh: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +555,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 106623970}
   - {fileID: 265822844}
   - {fileID: 1021839179}
   - {fileID: 1731929776}
@@ -668,11 +755,35 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 691934376}
     m_Modifications:
     - target: {fileID: 5745404348588668224, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
       propertyPath: m_Name
       value: House_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342855834052379308, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.9813995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342855834052379308, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -18.90855
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342855834052379308, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.09294671
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342855834052379308, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342855834052379308, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342855834052379308, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8446803811244182563, guid: 42f5da3328b49e44c8a5305b75fd79d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5021,6 +5132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livesText: {fileID: 858317196}
   ScoresText: {fileID: 687999628}
+  alertText: {fileID: 508681318}
 --- !u!4 &1472139076
 Transform:
   m_ObjectHideFlags: 0
@@ -5136,6 +5248,7 @@ MonoBehaviour:
   min_x: -16
   max_x: 52
   no_on_ufos: 3
+  no_of_simultaneous_ufos: 0
   no_of_players: 2
   no_of_houses: 5
   ufo_spawn_delay: 0
@@ -5308,6 +5421,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 508681317}
   - {fileID: 858317195}
   - {fileID: 687999630}
   m_Father: {fileID: 1472139076}
@@ -5322,7 +5436,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1154666713}
   - {fileID: 691934376}
   - {fileID: 1900013667}
   - {fileID: 364053564}

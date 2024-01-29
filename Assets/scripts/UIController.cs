@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Timers;
 
 public class UIController : MonoBehaviour
 {
 
     public Text livesText;
     public Text ScoresText;
+    public Text alertText;
+
+    private static System.Timers.Timer aTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -35,5 +39,47 @@ public class UIController : MonoBehaviour
         Debug.Log("UI Setscores");
         ScoresText.text = "Score: " + scores;
     }
+
+    public void AlertUfo(int level){
+
+        Debug.Log("AlertUfo");
+
+        string text = "Ufo Alert\n";
+
+        string line2 = "";
+        if (level < 0) {
+            line2 += '<';
+        }
+
+        for (int i=0; i<Mathf.Abs(level); i++){
+              line2 += '-';
+          }
+
+        if (level > 0) {
+            line2 += ">";
+        }
+
+        text += line2;
+
+        alertText.text = text;
+
+        StartCoroutine("AlertClear");
+
+    }
+
+    private IEnumerator AlertClear()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(3f); // wait half a second
+            // do things
+            Debug.Log("AlertTextClear");
+
+
+            alertText.text = "";
+            StopCoroutine("AlertClear");
+        }
+    }
+
 
 }
