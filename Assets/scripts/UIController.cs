@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public Text livesText;
     public Text ScoresText;
     public Text alertText;
+    public GameObject pauseMenu;
 
     private static System.Timers.Timer aTimer;
 
@@ -22,7 +23,8 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+            TogglePause();
     }
 
     public void SetLives(int lives){
@@ -82,6 +84,20 @@ public class UIController : MonoBehaviour
 
             alertText.text = "";
             StopCoroutine("AlertClear");
+        }
+    }
+
+    public void TogglePause()
+    {
+        if(pauseMenu.activeInHierarchy)
+        {
+            Time.timeScale = 1f;
+            pauseMenu.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
         }
     }
 
