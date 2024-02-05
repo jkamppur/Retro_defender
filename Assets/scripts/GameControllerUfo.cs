@@ -36,19 +36,20 @@ public class GameControllerUfo : MonoBehaviour
     {
 
         Debug.Log("GameController start");
-
+        Time.timeScale = 1f;
 
         // Player
         spawnPlayer();
         ui.SetLives(no_of_players);
 
-        // Ufo
-        no_on_ufos = no_on_ufos - 1;    
-        spawnUfo();
 
         // Score
         scores = 0;
         ui.SetScores(scores);
+
+        // Ufo
+        no_on_ufos = no_on_ufos - 1;    
+        spawnUfo();
 
     }
 

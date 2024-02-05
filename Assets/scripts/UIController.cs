@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Timers;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
             TogglePause();
+
+        if (Input.GetKeyDown(KeyCode.E) && (pauseMenu.activeInHierarchy))
+            ExitToMainMenu();
+
     }
 
     public void SetLives(int lives){
@@ -101,5 +106,13 @@ public class UIController : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
+    public void ExitToMainMenu()
+    {
+        SceneManager.LoadScene("main_menu");
+    }
 }

@@ -8,18 +8,14 @@ public class MainMenuController : MonoBehaviour
 
 
     void Update()
-        {
-            // Notice trigger
-            if (Input.GetButtonDown("Jump"))
-            {
-                StartGame();
-            }
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+            StartGame();
 
-            if (Input.GetButtonDown("Cancel"))
-            {
-                QuitGame();
-            }
-        }
+        if (Input.GetKeyDown(KeyCode.Q))
+            QuitGame();
+
+    }
  
 
 
