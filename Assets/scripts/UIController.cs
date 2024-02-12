@@ -11,7 +11,11 @@ public class UIController : MonoBehaviour
     public Text livesText;
     public Text ScoresText;
     public Text alertText;
+    public Text endReason;
+    public Text endScore;
+
     public GameObject pauseMenu;
+    public GameObject GameOverScreen;
 
     private static System.Timers.Timer aTimer;
 
@@ -24,11 +28,15 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && !(GameOverScreen.activeInHierarchy))
             TogglePause();
+
+        if (Input.GetKeyDown(KeyCode.E) && (GameOverScreen.activeInHierarchy))
+            ExitToMainMenu();
 
         if (Input.GetKeyDown(KeyCode.E) && (pauseMenu.activeInHierarchy))
             ExitToMainMenu();
+
 
     }
 
@@ -104,6 +112,14 @@ public class UIController : MonoBehaviour
             Time.timeScale = 0f;
             pauseMenu.SetActive(true);
         }
+    }
+
+    public void ShowGameOverScreen(string message, int score)
+    {
+            GameOverScreen.SetActive(true);
+            Time.timeScale = 0f;
+            endReason.text = message;
+            endScore.text = " " + score;
     }
 
     public void Restart()

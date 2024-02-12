@@ -61,6 +61,7 @@ public class GameControllerUfo : MonoBehaviour
             no_of_players = no_of_players - 1;
             if (no_of_players < 0){
                 Debug.Log("Game Over");
+                ui.ShowGameOverScreen("All tanks destroyed", scores);
             } else {
                 spawnPlayer();
             }
@@ -75,8 +76,6 @@ public class GameControllerUfo : MonoBehaviour
         float y_pos = 18;
         float x_pos = min_x + ((max_x - min_x) * Random.value);
         // float x_pos = Mathf.NextDouble(min_x, max_x);
-
-
 
         Vector3 position = new Vector3(x_pos, y_pos, 0);
 
