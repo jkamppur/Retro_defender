@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControllerUfo : MonoBehaviour
 {
+
+    public static int scores;
 
     public float min_x;
     public float max_x;
@@ -12,6 +15,7 @@ public class GameControllerUfo : MonoBehaviour
     public int no_of_players; 
     public int no_of_houses;
     public float ufo_spawn_delay;
+
     
     
     public GameObject ufo;
@@ -23,7 +27,7 @@ public class GameControllerUfo : MonoBehaviour
     private SmoothCameraFollow cs;
     private GameObject camera_target;
     private GameObject player;
-    private int scores;
+    // private int scores;
     //  private boolean player_alive;
 
 
@@ -134,6 +138,12 @@ public class GameControllerUfo : MonoBehaviour
 
         else {
             Debug.Log("Level win");
+            SceneManager.LoadScene("end_screen");
+            Debug.Log("Level win Scene load done");
+
+            // Add house bonus
+            // Add tank bonus
+
         }
     }
 
