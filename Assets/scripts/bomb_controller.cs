@@ -23,16 +23,12 @@ public class bomb_controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("OnTriggerEnter");
-        Debug.Log(other.name);
-
 
         if (other.name != "Ufo") {
 
             Debug.Log(other.name);
 
             if (other.CompareTag("Ammo")) {
-                Debug.Log("=================AMMO===================");
                 GameControllerUfo.instance.addScore(10);
             }                        
 

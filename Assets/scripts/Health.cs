@@ -14,8 +14,6 @@ public class Health : MonoBehaviour
     private int spriteCount;
     private int activeSprite;
     private float maxHealth;
-    private 
-
 
     // Start is called before the first frame update
     void Start()
@@ -66,14 +64,22 @@ public class Health : MonoBehaviour
                 GameControllerUfo.instance.ufoDown();
                 GameControllerUfo.instance.addScore(500);
             }
+
+            if(gameObject.CompareTag("House")){
+                GameControllerUfo.instance.houseDown();
+            }
+
             Destroy(gameObject);
+
+
+
 
             // Report to Game Controller about destroyed object
 
 
         } else {
             if(gameObject.CompareTag("Ufo")){
-                GameControllerUfo.instance.addScore(20);
+                GameControllerUfo.instance.addScore(50);
             }
 
         }

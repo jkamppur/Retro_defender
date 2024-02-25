@@ -8,6 +8,7 @@ TagManager:
   - Bomb
   - Ufo
   - Ammo
+  - House
   layers:
   - Default
   - TransparentFX

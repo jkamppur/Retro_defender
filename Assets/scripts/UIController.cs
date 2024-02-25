@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     public Text alertText;
     public Text endReason;
     public Text endScore;
+    public Text waveText;
 
     public GameObject pauseMenu;
     public GameObject GameOverScreen;
@@ -31,10 +32,10 @@ public class UIController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P) && !(GameOverScreen.activeInHierarchy))
             TogglePause();
 
-        if (Input.GetKeyDown(KeyCode.E) && (GameOverScreen.activeInHierarchy))
+        if (Input.GetKeyDown(KeyCode.M) && (GameOverScreen.activeInHierarchy))
             ExitToMainMenu();
 
-        if (Input.GetKeyDown(KeyCode.E) && (pauseMenu.activeInHierarchy))
+        if (Input.GetKeyDown(KeyCode.M) && (pauseMenu.activeInHierarchy))
             ExitToMainMenu();
 
 
@@ -99,6 +100,31 @@ public class UIController : MonoBehaviour
             StopCoroutine("AlertClear");
         }
     }
+
+
+    public void InfoWave(int wave){
+        waveText.text = "Attack wave " + wave + " start";
+        StartCoroutine("WaveClear");
+    }
+
+    private IEnumerator WaveClear()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(20f); // wait half a second
+            // do things
+            waveText.text = "";
+            StopCoroutine("WaveClear");
+        }
+    }
+
+
+
+
+
+
+
+
 
     public void TogglePause()
     {

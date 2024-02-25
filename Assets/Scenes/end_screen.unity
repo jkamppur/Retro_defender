@@ -497,7 +497,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "You have defeated UFO attack.\nYour score is:                  \nCongratulations!\nPress
-    m to return back to main menu"
+    M to return back to main menu"
 --- !u!222 &1447852116
 CanvasRenderer:
   m_ObjectHideFlags: 0

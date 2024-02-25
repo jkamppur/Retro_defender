@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,12 +28,19 @@ public class GameControllerUfo : MonoBehaviour
     private SmoothCameraFollow cs;
     private GameObject camera_target;
     private GameObject player;
+    private int wave;
+    private int ufos_per_wave;
+    private int active_ufos;
     // private int scores;
     //  private boolean player_alive;
 
 
     private void Awake() {
         instance = this;
+        wave = 1;
+        ufos_per_wave = no_on_ufos;
+        active_ufos = 0;
+        no_of_houses = 5;
     }
 
     // Start is called before the first frame update
@@ -51,8 +59,10 @@ public class GameControllerUfo : MonoBehaviour
         scores = 0;
         ui.SetScores(scores);
 
+        ui.InfoWave(wave);
+
+
         // Ufo
-        no_on_ufos = no_on_ufos - 1;    
         spawnUfo();
 
     }
@@ -88,6 +98,7 @@ public class GameControllerUfo : MonoBehaviour
         Transform transform = player.GetComponent<Transform>();        
 
         alertUfo(transform.position.x, x_pos);
+        active_ufos++;
 
 
     }
@@ -129,21 +140,91 @@ public class GameControllerUfo : MonoBehaviour
 
     }
 
-    public void ufoDown(){
+    public void houseDown(){
+        no_of_houses--;
+        if (no_of_houses == 0){
+            ui.ShowGameOverScreen("All Buildings were destroyed", scores);
+        }
+    }
+
+    public async Task ufoDown(){
+
+        active_ufos--;
         if (no_on_ufos > 0) {
             no_on_ufos--;
             spawnUfo();
-
         }
 
         else {
-            Debug.Log("Level win");
-            SceneManager.LoadScene("end_screen");
-            Debug.Log("Level win Scene load done");
 
-            // Add house bonus
-            // Add tank bonus
+            if(active_ufos == 0){
+                switch(wave){
 
+                    case 1:
+                        Debug.Log("wave 1 win");
+                        wave++;
+                        ui.InfoWave(wave);
+                        addScore(1000 * no_of_houses);
+                        no_on_ufos = ufos_per_wave  + 1;
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        break;
+
+                    case 2:
+                        Debug.Log("wave 2 win");
+                        wave++;
+                        ui.InfoWave(wave);
+                        addScore(2000 * no_of_houses);
+                        no_on_ufos = ufos_per_wave + 2;
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        break;
+
+                    case 3:
+                        Debug.Log("wave 3 win");
+                        wave++;
+                        ui.InfoWave(wave);
+                        addScore(3000 * no_of_houses);
+                        no_on_ufos = ufos_per_wave + 3;
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        break;
+
+                    case 4:
+                        Debug.Log("wave 4 win");
+                        ui.InfoWave(wave);
+                        addScore(4000 * no_of_houses);
+                        wave++;
+                        no_on_ufos = ufos_per_wave + 4;
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        await Task.Delay(3000);
+                        spawnUfo();
+                        break;
+
+
+                    case 5:
+                        Debug.Log("wave 5 win");
+                        addScore(5000 * no_of_houses);
+                        SceneManager.LoadScene("end_screen");
+                        Debug.Log("Level win Scene load done");
+                        break;
+                }
+            }
         }
     }
 

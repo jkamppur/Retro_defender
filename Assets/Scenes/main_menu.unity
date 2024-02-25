@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -232, y: -206}
-  m_SizeDelta: {x: 500, y: 200}
+  m_AnchoredPosition: {x: -143, y: -206}
+  m_SizeDelta: {x: 800, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &222401578
 MonoBehaviour:
@@ -193,8 +193,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Controls:\nCursor  left/right: Move tank\nArrrow up/down: Aim cannon angle\nPause:
-    Fire cannon \n"
+  m_Text: "Controls:\nCursor  left/right: Move tank\nCursor  up/down: Aim cannon
+    angle\nSpace: Fire cannon \n\nObjective: Intercept ufos. Beware of shooting own
+    buildings.\n"
 --- !u!222 &222401579
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -390,7 +391,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Start new game   s\n        Quit to DOS         q        "
+  m_Text: "Start new game   S\n        Quit to DOS         Q        "
 --- !u!222 &593490825
 CanvasRenderer:
   m_ObjectHideFlags: 0
