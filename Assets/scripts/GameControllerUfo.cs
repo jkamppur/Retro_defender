@@ -31,6 +31,7 @@ public class GameControllerUfo : MonoBehaviour
     private int wave;
     private int ufos_per_wave;
     private int active_ufos;
+    private bool PlayerUnderInstantiate;
     // private int scores;
     //  private boolean player_alive;
 
@@ -49,9 +50,11 @@ public class GameControllerUfo : MonoBehaviour
 
         Debug.Log("GameController start");
         Time.timeScale = 1f;
+        PlayerUnderInstantiate = true;
+
 
         // Player
-        spawnPlayer();
+        spawnPlayer(false);
         ui.SetLives(no_of_players);
 
 
@@ -71,13 +74,14 @@ public class GameControllerUfo : MonoBehaviour
     void Update()
     {
 
-        if (player == null) {
+        if (player == null && !PlayerUnderInstantiate) {
             no_of_players = no_of_players - 1;
             if (no_of_players < 0){
                 Debug.Log("Game Over");
-                ui.ShowGameOverScreen("All tanks destroyed", scores);
+                // ui.ShowGameOverScreen("All tanks destroyed", scores);
+                GotoEndScreen();
             } else {
-                spawnPlayer();
+                spawnPlayer(true);
             }
             Debug.Log("GameController call SetLives");
             ui.SetLives(no_of_players);
@@ -115,10 +119,21 @@ public class GameControllerUfo : MonoBehaviour
         ui.AlertUfo(level);
     }
 
+    public async Task GotoEndScreen() {
+        await Task.Delay(2000);
+        ui.ShowGameOverScreen("All tanks destroyed", scores);
+    }
 
-    private void spawnPlayer() {
+
+
+    public async Task spawnPlayer(bool delay) {
         // float x_pos = 28.5f;
         // float y_pos = 1.5f;
+        PlayerUnderInstantiate = true;
+
+        if (delay) {
+            await Task.Delay(2000);
+        }
 
         Debug.Log("Spawnplayer");
 
@@ -130,6 +145,8 @@ public class GameControllerUfo : MonoBehaviour
         Vector3 position = new Vector3(x_pos, y_pos, -0.5f);
         player = Instantiate(player_prefab, position, new Quaternion());
 
+        PlayerUnderInstantiate = false;
+
 
         // Set camera target to spawned player
         Transform transform = player.GetComponent<Transform>();
@@ -140,9 +157,10 @@ public class GameControllerUfo : MonoBehaviour
 
     }
 
-    public void houseDown(){
+    public async Task houseDown(){
         no_of_houses--;
         if (no_of_houses == 0){
+            await Task.Delay(2000);
             ui.ShowGameOverScreen("All Buildings were destroyed", scores);
         }
     }

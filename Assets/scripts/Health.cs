@@ -10,7 +10,8 @@ public class Health : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public GameControllerUfo gameController;
 
-
+    // Effects
+    public GameObject explosion;
     private int spriteCount;
     private int activeSprite;
     private float maxHealth;
@@ -66,6 +67,7 @@ public class Health : MonoBehaviour
             }
 
             if(gameObject.CompareTag("House")){
+                Instantiate(explosion, transform.position, new Quaternion());
                 GameControllerUfo.instance.houseDown();
             }
 
