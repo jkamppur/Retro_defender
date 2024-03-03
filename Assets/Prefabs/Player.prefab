@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: -157327351893288476}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,7 +255,6 @@ MonoBehaviour:
   cannonMax: 0
   shootCost: 0
   ammo: {fileID: 6543008735098012934, guid: 86b50666f69503f48a4a18408fc30a59, type: 3}
-  transform: {fileID: 0}
 --- !u!70 &1186507519589577469
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -307,3 +306,4 @@ MonoBehaviour:
   spriteArray: []
   spriteRenderer: {fileID: 0}
   gameController: {fileID: 0}
+  explosion: {fileID: 2429574028526647709, guid: 14c444f9501b90546bf0c5fc5625f62d, type: 3}

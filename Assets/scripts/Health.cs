@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -23,6 +24,10 @@ public class Health : MonoBehaviour
         spriteCount = spriteArray.Length;
         maxHealth = health;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if(gameObject.CompareTag("House")){
+            Debug.Log("Start AutoHeal");
+            StartCoroutine("AutoHeal");
+        }
     }
 
     // Update is called once per frame
@@ -31,12 +36,29 @@ public class Health : MonoBehaviour
 
     }
 
-    public void reduceHealth(float damage)
+    private IEnumerator AutoHeal()
     {
-        health -= damage;
+        while(true)
+        {
+            yield return new WaitForSeconds(5f); // wait 5 seconds
+            // do things
+            Debug.Log("AutoHeal");
+            float oldHealth = health;
+            health = health + 5;
+            if (health > maxHealth) {
+                health = maxHealth;
+            } 
 
-        Debug.Log("Health left " +  health);
+            Debug.Log("Health left " +  health);
+            if (health != oldHealth) {
+                updateSprite();
+            }
 
+        }
+    }
+
+
+    private void updateSprite(){
         if (spriteArray.Length > 0) {
             float healthPerSprite = maxHealth / (spriteCount + 1);
             float spriteHealth = maxHealth - health;
@@ -47,6 +69,19 @@ public class Health : MonoBehaviour
                 Debug.Log(spriteIndex);
                 spriteRenderer.sprite = spriteArray[spriteIndex]; 
             }
+        }
+    }
+
+
+
+    public void reduceHealth(float damage)
+    {
+        health -= damage;
+
+        Debug.Log("Health left " +  health);
+
+        if (spriteArray.Length > 0) {
+            updateSprite();
         }
 
 
@@ -62,6 +97,7 @@ public class Health : MonoBehaviour
 
 
             if(gameObject.CompareTag("Ufo")){
+                Instantiate(explosion, transform.position, new Quaternion());
                 GameControllerUfo.instance.ufoDown();
                 GameControllerUfo.instance.addScore(500);
             }
@@ -69,6 +105,11 @@ public class Health : MonoBehaviour
             if(gameObject.CompareTag("House")){
                 Instantiate(explosion, transform.position, new Quaternion());
                 GameControllerUfo.instance.houseDown();
+                StopCoroutine("AutoHeal");
+            }
+
+            if(gameObject.CompareTag("Player")){
+                Instantiate(explosion, transform.position, new Quaternion());
             }
 
             Destroy(gameObject);

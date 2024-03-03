@@ -162,3 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoSpeed: 20
+  explosion: {fileID: 3383531651084999725, guid: 1295b219cc8e92043af43cf195997242, type: 3}

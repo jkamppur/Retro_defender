@@ -19,6 +19,7 @@ public class ufo_controller : MonoBehaviour
     private float speedX;
     private float speedY;
     private float timer;
+    private float maxSpeed;
 
     private enum State {landing, leaving, left, right};
     private State state;
@@ -34,6 +35,7 @@ public class ufo_controller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         speedX=0;
         speedY=-0.8f;
+        maxSpeed = 20f;
         state=State.landing;
         rb.velocity = new Vector2(speedX, speedY);
         bombing = false;
@@ -50,22 +52,28 @@ public class ufo_controller : MonoBehaviour
                 bombing = true;
                 if (Random.Range(0, 2) == 0 )  {
                     state = State.left;
-                    speedX = -2;
+                    speedX = -2f;
                 } else {
                     state = State.right;
-                    speedX = 2;
+                    speedX = 2f;
                 }
                 rb.velocity = new Vector2(speedX, speedY);
             }
         } else if (state == State.left) {
             if ( transform.position.x < minX ) {
-                speedX = 2;
+                speedX = -1.2f * speedX;
+                if (speedX > maxSpeed) {
+                    speedX = maxSpeed;
+                }
                 state = State.right;
                 rb.velocity = new Vector2(speedX, speedY);
             }
         } else if (state == State.right) {
             if (transform.position.x > maxX) {
-                speedX = -2;
+                speedX = -1.2f * speedX;
+                if (speedX < -maxSpeed) {
+                    speedX = -maxSpeed;
+                }
                 rb.velocity = new Vector2(speedX, speedY);
                 state = State.left;
             }

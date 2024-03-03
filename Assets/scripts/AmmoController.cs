@@ -8,6 +8,7 @@ public class AmmoController : MonoBehaviour
     public float ammoSpeed;
     private Rigidbody2D rb;
     private float t;
+    public GameObject explosion;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +68,8 @@ public class AmmoController : MonoBehaviour
             Debug.Log("No Health script");
         } else {
             health.reduceHealth(10);
+            Instantiate(explosion, transform.position, new Quaternion());
+
         }
     }
 

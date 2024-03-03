@@ -209,6 +209,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d798113bd6e04a941a09b34304778caa, type: 3}
   spriteRenderer: {fileID: 0}
   gameController: {fileID: 0}
+  explosion: {fileID: 2402064042925766258, guid: 1630c147b015cb04787c92fa7d23c044, type: 3}
 --- !u!114 &6516299737605284442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,3 +227,4 @@ MonoBehaviour:
   minX: -16
   bomb: {fileID: 3720875026419660696, guid: a55808f768d1a4449aa6abe4ff83b4c3, type: 3}
   bombTimer: 2
+  gameController: {fileID: 0}
