@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
 
     // Effects
     public GameObject explosion;
+    private AudioSource audioSource;
     private int spriteCount;
     private int activeSprite;
     private float maxHealth;
@@ -25,6 +26,7 @@ public class Health : MonoBehaviour
         maxHealth = health;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if(gameObject.CompareTag("House")){
+            audioSource = GetComponent<AudioSource>();
             Debug.Log("Start AutoHeal");
             StartCoroutine("AutoHeal");
         }
@@ -43,6 +45,7 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(5f); // wait 5 seconds
             // do things
             Debug.Log("AutoHeal");
+
             float oldHealth = health;
             health = health + 5;
             if (health > maxHealth) {

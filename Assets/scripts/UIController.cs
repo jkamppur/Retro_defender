@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public Text endReason;
     public Text endScore;
     public Text waveText;
+    public Text warningText;
 
     public GameObject pauseMenu;
     public GameObject GameOverScreen;
@@ -91,7 +92,7 @@ public class UIController : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(5f); // wait half a second
+            yield return new WaitForSeconds(3f); // wait half a second
             // do things
             Debug.Log("AlertTextClear");
 
@@ -103,15 +104,23 @@ public class UIController : MonoBehaviour
 
 
     public void InfoWave(int wave){
-        waveText.text = "Attack wave " + wave + " start";
+        waveText.text = "Attack wave " + wave + " started!";
         StartCoroutine("WaveClear");
+    }
+
+    public void SetWarning(string warning){
+        warningText.text = warning;
+    }
+
+    public void ClearWarning(){
+        warningText.text = "";
     }
 
     private IEnumerator WaveClear()
     {
         while(true)
         {
-            yield return new WaitForSeconds(20f); // wait half a second
+            yield return new WaitForSeconds(5f); // wait half a second
             // do things
             waveText.text = "";
             StopCoroutine("WaveClear");

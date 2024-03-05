@@ -2,15 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerControl : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Transform cannon;
-    public float cannonMax;
-    public float shootCost;
-    private float cannonReady;
+    // public float cannonMax;
+    // public float shootCost;
+    public float shootRate;
+    private bool cannonReady;
     public GameObject ammo;
+    public GameObject bomb;
     // public Transform transform;
+    public GameControllerUfo gc;
+
+    private AudioSource audioSource;
+    private float playerNotMoved = 0.0f;
+    private float cannonCoolDown = 0.0f;
+    private int x_pos;
+    private int old_x_pos;
+    private bool warningActive = false;
 
 
 
@@ -19,40 +30,97 @@ public class PlayerControl : MonoBehaviour
     {
         Debug.Log("Player Control start");
         rb = GetComponent<Rigidbody2D>();
-        cannonReady = cannonMax;
-        // transform = GetComponent<Transform>();
+        cannonReady = true;
+        audioSource = GetComponent<AudioSource>();
+        old_x_pos = (int) rb.position.x;
+        GameControllerUfo.instance.ClearWarning();
 
     }
 
- 
-    void Update()
-    {
-        // Notice trigger
-        if (Input.GetButtonDown("Jump") && cannonReady >= shootCost)
-        {
-            cannonReady -= shootCost;
-            shoot();
-            Debug.Log(cannonReady);
-        }
 
-        if (cannonReady < cannonMax) {
-            cannonReady += Time.deltaTime;
-            if (cannonReady > cannonMax) {
-                cannonReady = cannonMax;
-            }
-        }
-    }
- 
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Shooting
+        if (Input.GetButton("Jump") && cannonReady)
+        {
+            cannonReady = false;
+            audioSource.Play();
+            shoot();
+            Debug.Log(cannonReady);
+            cannonCoolDown = 0.0f;
+        }
+
+        if (cannonReady == false) {
+            cannonCoolDown += Time.deltaTime;
+
+            if (cannonCoolDown >= shootRate)
+                cannonReady = true;
+        }
+
+
+
+
+
+
+        // Notice if player not moving
+        x_pos = (int) rb.position.x;
+        
+
+        if (Mathf.Abs(x_pos - old_x_pos) <= 2)
+            playerNotMoved += Time.deltaTime;
+        else {
+            playerNotMoved = 0.0f;
+            old_x_pos = x_pos;
+            if (warningActive) {
+                GameControllerUfo.instance.ClearWarning();
+                warningActive = false;
+            }
+        }
+
+        if (playerNotMoved > 5.0f && warningActive == false) {
+            GameControllerUfo.instance.SetWarning("Move !");
+            warningActive = true;
+        }
+        if (playerNotMoved > 7.0f) {
+            GameControllerUfo.instance.ClearWarning();
+            warningActive = false;
+            playerNotMoved = 4.0f;
+            old_x_pos = x_pos;
+
+            for (int i=-7; i<=7; i=i+2)
+            {
+                Vector3 position = new Vector3(x_pos + i, 18, 0);
+                Instantiate(bomb, position, new Quaternion());
+            }
+
+
+        }
+
+
+
+        // if(Mathf.Abs(rb.velocity.x) == 0)
+        // {
+        //     timePassed += Time.deltaTime;
+        // }
+        // else
+        //     timePassed = 0.0f;
+
+
 
 
         // Tank movement
         Vector3 move = rb.velocity;
         float dirX = Input.GetAxis("Horizontal");     // Input manager
-        move.x = dirX * 4;            
+        move.x = dirX * 5;            
         rb.velocity = move;
+
+        // Over rotation blocking
+        if (rb.rotation > 45)
+            rb.rotation = 44;
+
+        if (rb.rotation < -45)
+            rb.rotation = -44;
 
         // Cannon up and down
         float dirY = Input.GetAxis("Vertical");
@@ -61,12 +129,6 @@ public class PlayerControl : MonoBehaviour
         {
             AimCannon(dirY);
         }
-
-        // Update cannonReady
-        if (cannonReady < cannonMax){
-            cannonReady = cannonReady + 0.1f; // TODO improve logic to increase
-        }
-
 
     }
 
@@ -90,33 +152,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void shoot() {
-        // Debug.Log("shoot");
-        //Debug.Log(cannon.position); // Sijainti
-        // Debug.Log(cannon.rotation); // rotation
-        //Debug.Log(cannon.rotation.eulerAngles); // rotation
-
-        // Vector3 position = cannon.position + cannon.rotation.;
-
-
-
-
-        // Vector3 position = new Vector3(cannon.position.x + cannon.position.y, cannon.position.z);
-        // postions 
-
-
-        //                              object   position      rotation
         GameObject bullet = Instantiate(ammo, cannon.position, cannon.rotation);
-
-
-
-
-        // Miten lasketaan rotationin suuntaan sopiva aloituspaikka?
-
-        // Miten laitetaan vauhti oikeaan suuntaan?
-        // bullet.velocity = new Vector2d(5,5);
-
-
-
     }
 
 }

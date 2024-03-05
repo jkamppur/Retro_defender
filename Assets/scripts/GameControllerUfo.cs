@@ -70,6 +70,14 @@ public class GameControllerUfo : MonoBehaviour
 
     }
 
+    public void SetWarning(string warning) {
+        ui.SetWarning(warning);
+    }
+
+    public void ClearWarning() {
+        ui.ClearWarning();
+    }
+
     // Update is called once per frame
     void Update()
     {

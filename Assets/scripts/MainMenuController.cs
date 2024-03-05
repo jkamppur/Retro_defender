@@ -6,19 +6,43 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
 
+    public GameObject menuText;
+    public GameObject instruction1;
+    public GameObject instruction2;
+    public GameObject credit1;
+    public GameObject credit2;
+
+    private bool creditHidden = true;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && creditHidden)
             StartGame();
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && creditHidden)
             QuitGame();
 
+        if (Input.GetKeyDown(KeyCode.C))
+            HandleCredit();
     }
  
-
-
+    public void HandleCredit()
+    {
+        if (creditHidden){
+            menuText.SetActive(false);
+            instruction1.SetActive(false);
+            instruction2.SetActive(false);
+            credit1.SetActive(true);
+            credit2.SetActive(true);
+        } else {
+            menuText.SetActive(true);
+            instruction1.SetActive(true);
+            instruction2.SetActive(true);
+            credit1.SetActive(false);
+            credit2.SetActive(false);
+        }
+        creditHidden = !creditHidden;
+    }
 
     public void StartGame()
     {

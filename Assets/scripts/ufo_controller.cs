@@ -24,6 +24,8 @@ public class ufo_controller : MonoBehaviour
     private enum State {landing, leaving, left, right};
     private State state;
     private bool bombing = false;
+    private AudioSource audioSource;
+
 
 
 
@@ -40,6 +42,7 @@ public class ufo_controller : MonoBehaviour
         rb.velocity = new Vector2(speedX, speedY);
         bombing = false;
         timer = 5; // Time between
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -97,6 +100,7 @@ public class ufo_controller : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0 ){
                 // bomb
+                audioSource.Play();
                 Instantiate(bomb, transform.position, new Quaternion());
                 timer = bombTimer;
         }
