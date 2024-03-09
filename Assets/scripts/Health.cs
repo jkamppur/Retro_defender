@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
     private int spriteCount;
     private int activeSprite;
     private float maxHealth;
+    private bool destroyed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -96,8 +97,9 @@ public class Health : MonoBehaviour
 
         }
 
-        if (health <= 0) {
+        if (health <= 0 && !destroyed) {
 
+            destroyed = true;
 
             if(gameObject.CompareTag("Ufo")){
                 Instantiate(explosion, transform.position, new Quaternion());

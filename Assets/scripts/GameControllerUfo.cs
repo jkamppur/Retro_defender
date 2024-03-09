@@ -167,6 +167,8 @@ public class GameControllerUfo : MonoBehaviour
 
     public async Task houseDown(){
         no_of_houses--;
+        Debug.Log("House down " + no_of_houses);
+
         if (no_of_houses == 0){
             await Task.Delay(2000);
             MainManager.Instance.UpdateScore(scores);
