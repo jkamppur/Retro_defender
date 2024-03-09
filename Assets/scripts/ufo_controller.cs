@@ -13,8 +13,7 @@ public class ufo_controller : MonoBehaviour
     public float bombTimer;
     public GameControllerUfo gameController;
 
-
-    private Transform transform;
+    private Transform ufo_transform;
     private Rigidbody2D rb;
     private float speedX;
     private float speedY;
@@ -28,12 +27,10 @@ public class ufo_controller : MonoBehaviour
 
 
 
-
-
     // Start is called before the first frame update
     void Start()
     {
-        transform  = GetComponent<Transform>();
+        ufo_transform  = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         speedX=0;
         speedY=-0.8f;
@@ -49,7 +46,7 @@ public class ufo_controller : MonoBehaviour
     void Update()
     {
         if (state == State.landing) {
-            if (transform.position.y < 15) {
+            if (ufo_transform.position.y < 15) {
                 speedY=0;
                 timer = bombTimer;
                 bombing = true;
@@ -63,7 +60,7 @@ public class ufo_controller : MonoBehaviour
                 rb.velocity = new Vector2(speedX, speedY);
             }
         } else if (state == State.left) {
-            if ( transform.position.x < minX ) {
+            if ( ufo_transform.position.x < minX ) {
                 speedX = -1.2f * speedX;
                 if (speedX > maxSpeed) {
                     speedX = maxSpeed;
@@ -72,7 +69,7 @@ public class ufo_controller : MonoBehaviour
                 rb.velocity = new Vector2(speedX, speedY);
             }
         } else if (state == State.right) {
-            if (transform.position.x > maxX) {
+            if (ufo_transform.position.x > maxX) {
                 speedX = -1.2f * speedX;
                 if (speedX < -maxSpeed) {
                     speedX = -maxSpeed;
@@ -81,12 +78,12 @@ public class ufo_controller : MonoBehaviour
                 state = State.left;
             }
         } else if (state == State.leaving) {
-                if (transform.position.y <= 15) {
+                if (ufo_transform.position.y <= 15) {
                     speedY=1.5f;
                     speedX=0;
                     bombing = false;
                     rb.velocity = new Vector2(speedX, speedY);
-                } else if (transform.position.y >= 20) {
+                } else if (ufo_transform.position.y >= 20) {
                     Destroy(gameObject);
                     GameControllerUfo.instance.ufoDown();
                 }
@@ -101,8 +98,8 @@ public class ufo_controller : MonoBehaviour
             if (timer <= 0 ){
                 // bomb
                 audioSource.Play();
-                Instantiate(bomb, transform.position, new Quaternion());
-                timer = bombTimer;
+                Instantiate(bomb, ufo_transform.position, new Quaternion());
+                timer = bombTimer + Random.Range(-0.3f, 0.3f);
         }
         }
 

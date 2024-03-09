@@ -129,9 +129,9 @@ public class GameControllerUfo : MonoBehaviour
 
     public async Task GotoEndScreen() {
         await Task.Delay(2000);
+        MainManager.Instance.UpdateScore(scores);
         ui.ShowGameOverScreen("All tanks destroyed", scores);
     }
-
 
 
     public async Task spawnPlayer(bool delay) {
@@ -169,6 +169,7 @@ public class GameControllerUfo : MonoBehaviour
         no_of_houses--;
         if (no_of_houses == 0){
             await Task.Delay(2000);
+            MainManager.Instance.UpdateScore(scores);
             ui.ShowGameOverScreen("All Buildings were destroyed", scores);
         }
     }
@@ -246,6 +247,7 @@ public class GameControllerUfo : MonoBehaviour
                     case 5:
                         Debug.Log("wave 5 win");
                         addScore(5000 * no_of_houses);
+                        MainManager.Instance.UpdateScore(scores);
                         SceneManager.LoadScene("end_screen");
                         Debug.Log("Level win Scene load done");
                         break;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
@@ -12,8 +13,19 @@ public class MainMenuController : MonoBehaviour
     public GameObject credit1;
     public GameObject credit2;
     public GameObject title;
+    public Text highScoreText;
+    public GameObject h_text;
+
+    public int lastScore = 0;
+    public int highScore = 0;
 
     private bool creditHidden = true;
+
+    void Start()
+    {
+        Debug.Log("MainMenuController init");
+        UpdateHighScore();
+    }
 
     void Update()
     {
@@ -27,6 +39,17 @@ public class MainMenuController : MonoBehaviour
             HandleCredit();
     }
  
+ 
+    private void UpdateHighScore(){
+        Debug.Log("UpdateHighScore");
+
+        lastScore = MainManager.Instance.GetLastScore();
+        highScore = MainManager.Instance.GetHighScore();
+
+        string h_text = "Last Score: " + lastScore + "\nHigh Score: " +  highScore;
+        highScoreText.text = h_text;
+    }
+
     public void HandleCredit()
     {
         if (creditHidden){
@@ -34,6 +57,7 @@ public class MainMenuController : MonoBehaviour
             instruction1.SetActive(false);
             instruction2.SetActive(false);
             title.SetActive(false);
+            h_text.SetActive(false);
             credit1.SetActive(true);
             credit2.SetActive(true);
         } else {
@@ -41,6 +65,7 @@ public class MainMenuController : MonoBehaviour
             instruction1.SetActive(true);
             instruction2.SetActive(true);
             title.SetActive(true);
+            h_text.SetActive(true);
             credit1.SetActive(false);
             credit2.SetActive(false);
         }

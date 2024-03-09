@@ -12,7 +12,8 @@ public class EndScreenController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        endScore.text = " " + GameControllerUfo.scores;   
+        endScore.text = " " + GameControllerUfo.scores;
+   
     }
 
     // Update is called once per frame

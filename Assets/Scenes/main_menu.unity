@@ -194,9 +194,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Controls:\nCursor  left/right: Move tank\nCursor  up/down: Aim cannon
-    angle\nSpace: Fire cannon \n\nObjective: Intercept attacking UFOs and protects
+    angle\nSpace: Fire cannon \n\nObjective: Intercept attacking UFOs and protect
     buildings. \nBeware of shooting own buildings.\nKeep moving to avoid carpet bombing.\nThere
-    are total 5 attack waves. \nGood Luck!\n"
+    are total 5 attack waves, try to defend all. \nGood Luck!\n"
 --- !u!222 &222401579
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -307,6 +307,7 @@ RectTransform:
   - {fileID: 1714406639}
   - {fileID: 1904034513}
   - {fileID: 2100051274}
+  - {fileID: 276037239}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -410,6 +411,87 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &276037238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 276037239}
+  - component: {fileID: 276037241}
+  - component: {fileID: 276037240}
+  m_Layer: 5
+  m_Name: HighSCore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &276037239
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276037238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 250008651}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 192, y: -119}
+  m_SizeDelta: {x: 400, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &276037240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276037238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.87838054, g: 0.8867924, b: 0.4224813, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Last Score:
+
+    High SCore:'
+--- !u!222 &276037241
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276037238}
+  m_CullTransparentMesh: 1
 --- !u!1 &593490822
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +571,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593490822}
   m_CullTransparentMesh: 1
+--- !u!1 &888933639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888933641}
+  - component: {fileID: 888933640}
+  m_Layer: 0
+  m_Name: MainManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &888933640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888933639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7759aff50e75f1e48af965ce3cee48f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &888933641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888933639}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072808557
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,10 +962,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Version 1.0    5.3.2024  License:  CC BY-NC-ND 4.0 DEED https://creativecommons.org/licenses/by-nc-nd/4.0/\n\nGame
+  m_Text: "Version 1.0.1   9.3.2024  License:  CC BY-NC-ND 4.0 DEED https://creativecommons.org/licenses/by-nc-nd/4.0/\n\nGame
     Programming:      \nGame graphics:           \nMenu Background graphics:   \nGame
     testing:              \n                            \n                          
-    \n                    \r\nSounds, Downloaded from freesound@org:\r\n    \r\n   
+    \n                    \r\nSounds - downloaded from freesound@org:\r\n    \r\n   
     Songs:\r\n        'Military tank music' by Daniel Prellball - Creative Commons
     0\r\n        'dronescape' by MieliTietty - Creative Commons 0\r\n        'Jung
     Shake Loop' by rhodesmas - Attribution 3.0\r\n\r\n    Effects:\r\n        'Explosion
@@ -972,6 +1098,10 @@ MonoBehaviour:
   credit1: {fileID: 1714406638}
   credit2: {fileID: 1904034512}
   title: {fileID: 2100051273}
+  highScoreText: {fileID: 276037240}
+  h_text: {fileID: 276037238}
+  lastScore: 0
+  highScore: 0
 --- !u!1 &1904034512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,3 +1264,4 @@ SceneRoots:
   - {fileID: 1812298872}
   - {fileID: 1584015266}
   - {fileID: 250008651}
+  - {fileID: 888933641}
